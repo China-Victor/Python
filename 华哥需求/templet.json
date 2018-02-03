@@ -1,0 +1,16 @@
+{
+    "module": "Push",
+    "prefix": "TK",
+    "author": "TryHone",
+    "time": "2017/12/21",
+    "year": "2017",
+    "model": {
+        "superclass": "NSObject"
+    },
+    "view": {
+        "superclass": "UIViewController"
+    },
+    "presenter": {
+        "superclass": "NSObject"
+    }
+}

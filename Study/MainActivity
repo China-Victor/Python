@@ -1,0 +1,46 @@
+
+import com.android.thinkive.framework.compatible.SystemBarTintManager
+
+public class MainActivity extends AppCompatActivity{
+
+    // 框架中的状态栏管理类
+    private SystemBarTintManager tintManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        //设置状态颜色为半透明
+        initSystemBar("#44000000");
+
+        ...
+        ...
+
+    }
+
+    public void initSystemBar(String color) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setTranslucentStatus(true);
+        }
+        if (tintManager == null) {
+            tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+        }
+        tintManager.setStatusBarTintColor(Color.parseColor(color));
+    }
+
+    @TargetApi(19)
+    private void setTranslucentStatus(boolean on) {
+        Window win = this.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        if (on) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+        }
+        win.setAttributes(winParams);
+    }
+
+
+}
